@@ -12,8 +12,8 @@ const request = require('request');
 /**
  * Takes care about the http connection and response handling
  */
-class HtmlScraper {
-    detailHtml(url) {
+class HttpService {
+    get(url) {
         return __awaiter(this, void 0, void 0, function* () {
             let result = new Promise((resolve, reject) => {
                 request.get(url, { followRedirect: false }, (error, response, body) => {
@@ -31,25 +31,10 @@ class HtmlScraper {
             return result;
         });
     }
-    search(query, url, options) {
+    post(url, body) {
         return __awaiter(this, void 0, void 0, function* () {
             let result = new Promise((resolve, reject) => {
-                request.post(url, {
-                    qs: {
-                        page: 1
-                    },
-                    form: {
-                        'queryString': query,
-                        't': 'games',
-                        'sorthead': 'popular',
-                        'sortd': 'Normal Order',
-                        'plat': '',
-                        'length_type': 'main',
-                        'length_min': '',
-                        'length_max': '',
-                        'detail': '0'
-                    }
-                }, (error, response, body) => {
+                request.post(url, body, (error, response, body) => {
                     if (error) {
                         reject(error);
                     }
@@ -65,5 +50,5 @@ class HtmlScraper {
         });
     }
 }
-exports.HtmlScraper = HtmlScraper;
-//# sourceMappingURL=htmlscraper.js.map
+exports.HttpService = HttpService;
+//# sourceMappingURL=http.service.js.map

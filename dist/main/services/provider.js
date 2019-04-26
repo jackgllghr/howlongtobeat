@@ -8,27 +8,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const provider_1 = require("./services/provider");
-const parser_1 = require("./services/parser");
-class HowLongToBeatService {
+const SearchOptions_mapper_1 = require("../mapper/SearchOptions.mapper");
+const http_service_1 = require("./http.service");
+const constants_1 = require("../constants");
+/**
+ * Takes care about the http connection and response handling
+ */
+class HowLongToBeatProvider {
     constructor() {
-        this.provider = new provider_1.HowLongToBeatProvider();
+        this.http = new http_service_1.HttpService();
+        this.mapper = new SearchOptions_mapper_1.SearchOptionsMapper();
     }
-    /**
-     * Get HowLongToBeatEntry from game id, by fetching the detail page like https://howlongtobeat.com/game.php?id=6974 and parsing it.
-     * @param gameId the hltb internal gameid
-     * @return Promise<HowLongToBeatEntry> the promise that, when fullfilled, returns the game
-     */
-    getDetail(gameId) {
+    ;
+    ;
+    getGameDetailHtml(gameId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.provider.getGameDetailHtml(gameId).then(detailPage => parser_1.HowLongToBeatParser.parseDetails(detailPage, gameId));
+            return this.http.get(`${constants_1.Constants.DETAIL_URL}${gameId}`);
         });
     }
     search(query, options) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.provider.search(query, options).then(searchPage => parser_1.HowLongToBeatParser.parseSearch(searchPage, query));
+            return this.http.post(constants_1.Constants.SEARCH_URL, this.mapper.map(query, options));
         });
     }
 }
-exports.HowLongToBeatService = HowLongToBeatService;
-//# sourceMappingURL=howlongtobeat.js.map
+exports.HowLongToBeatProvider = HowLongToBeatProvider;
+//# sourceMappingURL=provider.js.map
