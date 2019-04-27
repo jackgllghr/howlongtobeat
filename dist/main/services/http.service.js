@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const request = require('request');
+const request = require("request");
 /**
  * Takes care about the http connection and response handling
  */
@@ -21,7 +21,7 @@ class HttpService {
                         reject(error);
                     }
                     else if (response.statusCode !== 200) {
-                        reject(new Error('Got non-200 status code from howlongtobeat.com'));
+                        reject(new Error("Got non-200 status code from howlongtobeat.com"));
                     }
                     else {
                         resolve(body);
@@ -39,7 +39,7 @@ class HttpService {
                         reject(error);
                     }
                     else if (response.statusCode !== 200) {
-                        reject(new Error('Got non-200 status code from howlongtobeat.com'));
+                        reject(new Error("Got non-200 status code from howlongtobeat.com"));
                     }
                     else {
                         resolve(body);
