@@ -22,9 +22,11 @@
   "dependencies": {
     "cheerio": "1.0.0-rc.3",
     "fast-levenshtein": "2.0.6",
-    "request": "2.88.0"
+    "xhr": "2.5.0"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.11",
+    "@types/fast-levenshtein": "0.0.1",
     "@types/chai": "^3.5.2",
     "@types/chai-as-promised": "^0.0.30",
     "@types/mocha": "^2.2.41",

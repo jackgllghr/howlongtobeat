@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const request = require("request");
+const xhr_1 = require("xhr");
 /**
  * Takes care about the http connection and response handling
  */
@@ -16,7 +16,7 @@ class HttpService {
     get(url) {
         return __awaiter(this, void 0, void 0, function* () {
             let result = new Promise((resolve, reject) => {
-                request.get(url, { followRedirect: false }, (error, response, body) => {
+                xhr_1.default.get(url, (error, response, body) => {
                     if (error) {
                         reject(error);
                     }
@@ -34,7 +34,7 @@ class HttpService {
     post(url, body) {
         return __awaiter(this, void 0, void 0, function* () {
             let result = new Promise((resolve, reject) => {
-                request.post(url, body, (error, response, body) => {
+                xhr_1.default.post(url, body, (error, response, body) => {
                     if (error) {
                         reject(error);
                     }
