@@ -1,6 +1,6 @@
 import { HowLongToBeatEntry } from "../model/HowLongToBeatEntry";
-import cheerio = require("cheerio");
-import levenshtein = require("fast-levenshtein");
+import * as cheerio from "cheerio";
+import * as levenshtein from "fast-levenshtein";
 
 /**
  * Internal helper class to parse html and create a HowLongToBeatEntry
