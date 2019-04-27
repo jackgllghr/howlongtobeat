@@ -1,6 +1,6 @@
 import * as mocha from "mocha";
 import * as chai from "chai";
-import { HowLongToBeatService } from "../main/howlongtobeat";
+import { HowLongToBeatService } from "../main/services/hltb.service";
 
 const expect = chai.expect;
 const assert = chai.assert;

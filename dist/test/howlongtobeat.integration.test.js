@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const chai = require("chai");
-const howlongtobeat_1 = require("../main/howlongtobeat");
+const hltb_service_1 = require("../main/services/hltb.service");
 const expect = chai.expect;
 const assert = chai.assert;
 describe("Integration-Testing HowLongToBeatService", () => {
     describe("Test for detail()", () => {
         it("should load entry for 2224 (Dark Souls)", () => {
-            return new howlongtobeat_1.HowLongToBeatService().getDetail("2224").then(entry => {
+            return new hltb_service_1.HowLongToBeatService().getDetail("2224").then(entry => {
                 assert.isNotNull(entry);
                 assert.strictEqual(entry.id, "2224");
                 assert.strictEqual(entry.name, "Dark Souls");
@@ -17,18 +17,18 @@ describe("Integration-Testing HowLongToBeatService", () => {
             });
         });
         it("should fail to load entry for 123 (404)", () => {
-            return assert.isRejected(new howlongtobeat_1.HowLongToBeatService().getDetail("123"));
+            return assert.isRejected(new hltb_service_1.HowLongToBeatService().getDetail("123"));
         });
     });
     describe("Test for search()", () => {
         it("should have no search results when searching for dorks", () => {
-            return new howlongtobeat_1.HowLongToBeatService().search("dorks").then(result => {
+            return new hltb_service_1.HowLongToBeatService().search("dorks").then(result => {
                 assert.isNotNull(result);
                 assert.strictEqual(result.length, 0);
             });
         });
         it("should have at least 3 search results when searching for dark souls III", () => {
-            return new howlongtobeat_1.HowLongToBeatService()
+            return new hltb_service_1.HowLongToBeatService()
                 .search("dark souls III")
                 .then(result => {
                 assert.isNotNull(result);
@@ -41,7 +41,7 @@ describe("Integration-Testing HowLongToBeatService", () => {
             });
         });
         it("should have 1 search results with 100% similarity when searching for Persona 4: Golden", () => {
-            return new howlongtobeat_1.HowLongToBeatService()
+            return new hltb_service_1.HowLongToBeatService()
                 .search("Persona 4 Golden")
                 .then(result => {
                 assert.isNotNull(result);
@@ -50,7 +50,7 @@ describe("Integration-Testing HowLongToBeatService", () => {
             });
         });
         it('Entries without any time settings (e.g. "Ambers boom") should have a zero hour result', () => {
-            return new howlongtobeat_1.HowLongToBeatService().search("Ambers boom").then(result => {
+            return new hltb_service_1.HowLongToBeatService().search("Ambers boom").then(result => {
                 console.log(result);
                 assert.isNotNull(result);
                 assert.isTrue(result.length > 0);
@@ -58,7 +58,7 @@ describe("Integration-Testing HowLongToBeatService", () => {
             });
         });
         it("should be able to use pagination", () => {
-            let service = new howlongtobeat_1.HowLongToBeatService();
+            let service = new hltb_service_1.HowLongToBeatService();
             let searchTerm = "Final";
             return Promise.all([
                 service.search(searchTerm, { page: 1 }),
