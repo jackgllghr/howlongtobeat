@@ -1,11 +1,10 @@
-const request: any = require('request');
+const request = require('request');
 
 /**
  * Takes care about the http connection and response handling
  */
-export class HtmlScraper {
-
-  async detailHtml(url: string): Promise<string> {
+export class HttpService {
+  async get(url: string): Promise<string> {
     let result: Promise<string> = new Promise<string>((resolve, reject) => {
       request.get(url, { followRedirect: false }, (error, response, body) => {
         if (error) {
@@ -20,24 +19,9 @@ export class HtmlScraper {
     return result;
   }
 
-  async search(query: string, url: string): Promise<string> {
+  async post(url: string, body: any): Promise<string> {
     let result: Promise<string> = new Promise<string>((resolve, reject) => {
-      request.post(url, {
-        qs: {
-          page: 1
-        },
-        form: {
-          'queryString': query,
-          't': 'games',
-          'sorthead': 'popular',
-          'sortd': 'Normal Order',
-          'plat': '',
-          'length_type': 'main',
-          'length_min': '',
-          'length_max': '',
-          'detail': '0'
-        }
-      }, (error, response, body) => {
+      request.post(url, body, (error, response, body) => {
         if (error) {
           reject(error);
         } else if (response.statusCode !== 200) {

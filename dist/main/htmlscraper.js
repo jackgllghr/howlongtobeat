@@ -31,7 +31,7 @@ class HtmlScraper {
             return result;
         });
     }
-    search(query, url) {
+    search(query, url, options) {
         return __awaiter(this, void 0, void 0, function* () {
             let result = new Promise((resolve, reject) => {
                 request.post(url, {

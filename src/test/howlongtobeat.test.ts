@@ -1,8 +1,8 @@
 import * as mocha from 'mocha';
 import * as chai from 'chai';
 import * as fs from 'fs';
+import { HowLongToBeatParser } from '../main/services/parser';
 
-import { HowLongToBeatParser } from '../main/howlongtobeat';
 
 const expect = chai.expect;
 const assert = chai.assert;
